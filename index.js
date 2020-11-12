@@ -1,40 +1,36 @@
 const { ApolloServer, gql } = require('apollo-server');
 
 const typeDefs = gql`
-  type User {
+  type Todo {
     id: Int
-    name: String!
-    age: Int
-    friends: [User]
+    title: String
+    description: String
+    isCompleted: Boolean
   }
 
   type Query {
-    users: [User]
+    list: [Todo]
   }  
 `
 
-const users = [
+const list = [
   {
     id: 1,
-    name: 'leo',
-    age: 20,
-    friends: [2],
-    height: 175,
-    weight: 75
+    title: 'todo 1',
+    description: 'todo 1 description',
+    isCompleted: false
   },
   {
     id: 2,
-    name: 'woody',
-    age: 20,
-    friends: [],
-    height: 168,
-    weight: 60
+    title: 'todo 2',
+    description: 'todo 2 description',
+    isCompleted: true
   }
 ]
 
 const resolvers = {
   Query: {
-    users: () => users
+    list: () => list
   },
 };
 
